@@ -14,6 +14,14 @@ let sendJSON = (res,data) => {
   res.end();
 };
 
+router.get('/', (req,res) => {
+  res.statusCode = 200;
+  res.statusMessage = 'OK';
+  //let name = req.params.name || '';
+  res.write(`Hello, welcome to my Object Relational Mapping Assignment`);
+  res.end();
+});
+
 router.get('/api/v1/:model', (req,res,next) => {
   req.model.find({})
     .then( data => sendJSON(res,data) )
