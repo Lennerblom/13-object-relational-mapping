@@ -1,48 +1,25 @@
-![CF](https://camo.githubusercontent.com/70edab54bba80edb7493cad3135e9606781cbb6b/687474703a2f2f692e696d6775722e636f6d2f377635415363382e706e67) 13: Single Resource Mongo and Express API
-===
+[![Build Status](https://travis-ci.org/Lennerblom/13-object-relational-mapping.svg?branch=master)](https://travis-ci.org/Lennerblom/13-object-relational-mapping)
 
-## Submission Instructions
-Follow the instructions in the "Lab Submission Instructions" document in the course reference folder
+# 13: Object Relational Mapping
+___
+###### TRAVIS: https://travis-ci.org/Lennerblom/
+###### HEROKU: https://.herokuapp.com/
+###### PR: https://github.com/Lennerblom//pull/1
+___
+This server was created using Express.  The home route URL is: https://orm13.herokuapp.com/ and accepts an optional name query string (?name=name), which will display "Hello" or "Hello Name" if option is added.  It will handle `GET`, `POST`, and `DELETE` requests. 
 
-## Learning Objectives  
-* students will be able to work with the MongoDB database management system
-* students will understand the primary concepts of working with a NoSQL database management system
-* students will be able to create custom data models *(schemas)* through the use of mongoose.js
-* students will be able to use mongoose.js helper methods for interacting with their database persistence layer
+### **In order to run my app, do the following:**
 
-## Requirements
+Fork this repo and clone it to your system so you can run the below commands.  In the terminal cd into the root folder of the cloned repo.  Type `npm init -y` then `npm i` to load the dependencies. Type `npm run watch` to start the server with nodemon.
 
-#### Feature Tasks
-* create an HTTP Server using `express`
-* create a resource **model** of your choice that uses `mongoose.Schema` and `mongoose.model`
-* use the `body-parser` express middleware to parse the `req` body on `POST` and `PUT` requests
-* use the npm `debug` module to log the functions and methods that are being used in your application
-* use the express `Router` to create a route for doing **RESTFUL CRUD** operations against your _model_
+Open another tab in the terminal and run the following commands with HTTPie
 
-## Server Endpoints
-### `/api/v1/resource-name`
-* `POST` request
-  * should pass data as stringifed JSON in the body of a post request to create a new resource
-### `api/v1/resource-name`
-* `GET` request
-* Fetch all resources
-### `/api/v1/resource-name/:id`
-* `GET` request
-  * should pass the id of a resource through the url endpoint to get a resource
-    * **this should use `req.params`, not querystring parameters**
-* `PUT` request
-  * should pass data as stringifed JSON in the body of a put request to overwrite a pre-existing resource
-* `DELETE` request
-  * should pass the id of a resource though the url endpoint to delete a resource
-    * **this should use `req.params`**
+* Using HTTPie run the following commands in the terminal in order:
 
-### Tests
-* create a test that will ensure that your API returns a status code of 404 for routes that have not been registered
-* create a series of tests to ensure that your `/api/v1/resource-name` endpoint responds as described for each condition below:
-  * `GET` - test 200, returns a resource with a valid body
- * `GET` - test 404, respond with 'not found' for valid requests made with an id that was not found
- * `PUT` - test 200, returns a resource with an updated body
- * `PUT` - test 400, responds with 'bad request' if no request body was provided
- * `PUT` - test 404, responds with 'not found' for valid requests made with an id that was not found
- * `POST` - test 400, responds with 'bad request' if no request body was provided
- * `POST` - test 200, returns a resource for requests made with a valid body
+  1. `http POST :3009/api/v1/chores choreName=dishes assignedTo=Lydia`
+
+  You should receive a JSON object in the terminal and you'll need to copy and paste the long id and replace the id in the GET, and DELETE commands below.
+
+  2. `http GET :3009/api/v1/chores?id=829c4c60-6df0-11e8-8bb8-8f5a2fd3ddda`
+
+  3. `http DELETE :3009/api/v1/chores?id=829c4c60-6df0-11e8-8bb8-8f5a2fd3ddda`

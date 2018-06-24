@@ -6,5 +6,5 @@ export default (req,res,next) => {
   res.statusMessage = 'Not Found';
   res.setHeader('Content-Type', 'application/json');
   res.write(JSON.stringify(error));
-  res.end();
+  res.end(next);
 };

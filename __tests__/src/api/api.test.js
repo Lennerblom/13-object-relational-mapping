@@ -5,7 +5,7 @@ const mockgoose = new Mockgoose(mongoose);
 import Chores from '../../../src/models/chores.js';
 import {server} from '../../../src/app.js';
 
-const API_URL = '/api/v1/chores';
+const API_URL = 'api/v1/chores';
 
 const mockRequest = require('supertest')(server);
 
@@ -13,7 +13,7 @@ describe('app module', () => {
 
   beforeAll((done) => {
     mockgoose.prepareStorage().then(() => {
-      mongoose.connect('mongodb://localhost/lab13db').then(() => {
+      mongoose.connect('mongodb://localhost:27017/lab13db').then(() => {
         done();
       });
     });
@@ -22,7 +22,6 @@ describe('app module', () => {
   afterEach((done) => {
     mockgoose.helper.reset().then(done);
   });
-
 
   it('should create chore', () => {
 
@@ -33,7 +32,7 @@ describe('app module', () => {
       })
       .then(chore => {
         expect(chore.chore).toBe('dishes');
-        expect(chore.assignedTo).toBe('');
+        expect(chore.assignedTo).toBe('Lydia');
       });
 
   });
@@ -81,11 +80,21 @@ describe('app module', () => {
 
   it('should get 404', () => {
     let fail;
-    return mockRequest.get('/foo/bar').then(response => {
-      let err = JSON.stringify(response.text);
+    return mockRequest.get('/foo/bar').then(res => {
+      let err = JSON.stringify(res.text);
       expect(err).toBeDefined();
     }).catch(err => {
       fail(err);
     });
   });
 });
+
+// create a test that will ensure that your API returns a status code of 404 for routes that have not been registered
+// create a series of tests to ensure that your /api/v1/resource-name endpoint responds as described for each condition below:
+// GET good - test 200, returns a resource with a valid body
+// GET - test 404, respond with 'not found' for valid requests made with an id that was not found
+// PUT - test 200, returns a resource with an updated body
+// PUT - test 400, responds with 'bad request' if no request body was provided
+// PUT - test 404, responds with 'not found' for valid requests made with an id that was not found
+// POST - test 400, responds with 'bad request' if no request body was provided
+// POST - test 200, returns a resource for requests made with a valid body
