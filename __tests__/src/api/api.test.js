@@ -5,7 +5,7 @@ const mockgoose = new Mockgoose(mongoose);
 import Chores from '../../../src/models/chores.js';
 import {server} from '../../../src/app.js';
 
-const API_URL = 'api/v1/chores';
+const API_URL = '/api/v1/chores';
 
 const mockRequest = require('supertest')(server);
 
@@ -29,6 +29,7 @@ describe('app module', () => {
       .create({
         chore: 'dishes',
         assignedTo: 'Lydia',
+        completed: 'true',
       })
       .then(chore => {
         expect(chore.chore).toBe('dishes');
@@ -47,7 +48,7 @@ describe('app module', () => {
   it('should get zilch via api', () => {
 
     return mockRequest
-      .get(API_URL)
+      .get('/api/v1/chores')
       .then(data => JSON.parse(data.text))
       .then(chores => {
         expect(chores).toEqual([]);
@@ -58,10 +59,11 @@ describe('app module', () => {
   it('should post new chore via API', () => {
 
     return mockRequest
-      .post(API_URL)
+      .post('/api/v1/chores')
       .send({
         chore: 'Laundry',
         assignedTo: 'Abigail',
+        completed: 'true',
       })
       .then(data => JSON.parse(data.text))
       .then(chore => {
