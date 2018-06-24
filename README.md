@@ -2,11 +2,11 @@
 
 # 13: Object Relational Mapping
 ___
-###### TRAVIS: https://travis-ci.org/Lennerblom/
-###### HEROKU: https://.herokuapp.com/
+###### TRAVIS: https://travis-ci.org/Lennerblom/13-object-relational-mapping
+###### HEROKU: https://orm13.herokuapp.com/api/v1/chores/ (!NOT WORKING AT THIS TIME!)
 ###### PR: https://github.com/Lennerblom//pull/1
 ___
-This server was created using Express and incorporated a Mongo database to store data.  The home route URL is: https://orm13.herokuapp.com/ .and accepts an optional name query string (?name=name), which will display "Hello" or "Hello Name" if option is added.  It will handle `GET`, `POST`, and `DELETE` requests. 
+This server was created using Express and incorporated a Mongo database to store data.  The home route URL is: https://orm13.herokuapp.com/.  https://orm13.herokuapp.com/api/v1/chores/ will display all the chores in the database (If it worked in Heroku).  Otherwise, http://localhost:3013/ will work if you fork the repo as described below.
 
 ### **In order to run my app, do the following:**
 
