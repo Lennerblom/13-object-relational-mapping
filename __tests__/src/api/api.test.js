@@ -23,8 +23,7 @@ describe('app module', () => {
     mockgoose.helper.reset().then(done);
   });
 
-  it('should create chore', () => {
-
+  it('should create a chore', () => {
     return Chores
       .create({
         chore: 'dishes',
@@ -35,31 +34,20 @@ describe('app module', () => {
         expect(chore.chore).toBe('dishes');
         expect(chore.assignedTo).toBe('Lydia');
       });
-
-  });
-
-  it('should get zilch directly', () => {
-
-    return Chores.find().then(chores => {
-      expect(chores).toEqual([]);
-    });
   });
 
   it('should get zilch via api', () => {
-
     return mockRequest
-      .get('/api/v1/chores')
+      .get(API_URL)
       .then(data => JSON.parse(data.text))
       .then(chores => {
         expect(chores).toEqual([]);
       });
-
   });
 
   it('should post new chore via API', () => {
-
     return mockRequest
-      .post('/api/v1/chores')
+      .post(API_URL)
       .send({
         chore: 'Laundry',
         assignedTo: 'Abigail',

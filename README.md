@@ -4,7 +4,7 @@
 ___
 ###### TRAVIS: https://travis-ci.org/Lennerblom/13-object-relational-mapping
 ###### HEROKU: https://orm13.herokuapp.com/api/v1/chores/ (!NOT WORKING AT THIS TIME!)
-###### PR: https://github.com/Lennerblom//pull/1
+###### PR: https://github.com/Lennerblom/13-object-relational-mapping/pull/1
 ___
 This server was created using Express and incorporated a Mongo database to store data.  The home route URL is: https://orm13.herokuapp.com/.  https://orm13.herokuapp.com/api/v1/chores/ will display all the chores in the database (If it worked in Heroku).  Otherwise, http://localhost:3013/ will work if you fork the repo as described below.
 
